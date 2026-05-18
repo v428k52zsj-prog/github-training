@@ -18,9 +18,12 @@ jobs:
 
       - name: Print message
         run: echo "GitHub Actions is working correctly"
-              - name: Check secret exists
+
+      - name: Check secret exists
+        env:
+          TRAINING_SECRET: ${{ secrets.TRAINING_SECRET }}
         run: |
-          if [ -z "${{ secrets.TRAINING_SECRET }}" ]; then
+          if [ -z "$TRAINING_SECRET" ]; then
             echo "Secret is missing"
             exit 1
           else
